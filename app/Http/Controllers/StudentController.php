@@ -38,9 +38,9 @@ class StudentController extends Controller
         $student =new Student;
         $student->name=request('name');
         $student->email=request('email');
-
         $student->save();
         return redirect('/');
+        dfg
 
     }
 
