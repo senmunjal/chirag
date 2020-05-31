@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -15,6 +16,9 @@ class StudentController extends Controller
     public function index()
     {
         //
+        $students= Student::all();
+
+        return view('viewuser',compact('students'));
     }
 
     /**
@@ -40,7 +44,7 @@ class StudentController extends Controller
         $student->email=request('email');
         $student->save();
         return redirect('/');
-        dfg
+        
 
     }
 
@@ -52,7 +56,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        
     }
 
     /**
@@ -61,9 +65,11 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
-    {
-        //
+    public function edit(Student $student,$id)
+    {   
+        $students= Student::all()->where('id',$id);
+        return view('edituser',compact('students'));
+        
     }
 
     /**
@@ -76,6 +82,11 @@ class StudentController extends Controller
     public function update(Request $request, Student $student)
     {
         //
+        $student->name=request('name');
+        $student->email=request('email');
+        dd($student);
+        return redirect('/user');
+
     }
 
     /**

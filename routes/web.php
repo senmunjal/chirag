@@ -23,8 +23,8 @@ Route::get('post/{post}', function ($post) {
     ]);
 });
 
-Route::get('/', function () {
+Route::get('/',function(){
     return view('adduser');
 });
 
-Route::post('save','StudentController@store');
+Route::resource('/user','StudentController');
