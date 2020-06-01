@@ -15,8 +15,8 @@ class StudentController extends Controller
     public function index()
     {
         //
-        $students = Student::all();        
-        return view('index');
+        $student = Student::all();        
+        return view('students.index',compact('student'));
     }
 
     /**
@@ -26,7 +26,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        
+        return view('students.create');
     }
 
     /**
@@ -41,7 +41,7 @@ class StudentController extends Controller
         $student->name=request('name');
         $student->email=request('email');
         $student->save();
-        return redirect('/');
+        return redirect('/students');
         
 
     }
@@ -63,10 +63,9 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student,$id)
+    public function edit(Student $student)
     {   
-        $students= Student::find($id);
-        return view('edituser',compact('students'));
+        return view('students.edit',compact('student'));
         
     }
 
@@ -80,10 +79,11 @@ class StudentController extends Controller
     public function update(Request $request, Student $student)
     {
         //
-        $student->name=request('name');
-        $student->email=request('email');
-        $student->save();
-        return redirect('/user');
+        $student->update($request->all());
+  
+        return redirect()->route('students.index')
+                        ->with('success','Blog updated successfully');
+       
 
     }
 
@@ -96,5 +96,9 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+        $student->delete();
+  
+        return redirect()->route('students.index')
+                        ->with('success','Blogs deleted successfully');
     }
 }

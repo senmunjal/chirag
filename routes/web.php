@@ -13,18 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('post/{post}', function ($post) {
-    $posts=[
-        '1'=>"chirag",
-        '2'=>"test"
-    ];
-    return view('welcome',[
-        'post'=>$posts[$post] ?? 'Nothing'
-    ]);
-});
+// Route::get('/{post}', function ($post) {
+//     $posts=[
+//         '1'=>"chirag",
+//         '2'=>"test"
+//     ];
+//     return view('welcome',[
+//         'post'=>$posts[$post] ?? 'Nothing'
+//     ]);
+// });
 
-Route::get('/',function(){
-    return view('adduser');
-});
+// Route::get('/',function(){
+//     return view('welcome');
+// });
 
-Route::resource('/user','StudentController');
+Route::resource('/students','StudentController');
