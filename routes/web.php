@@ -26,5 +26,15 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/',function(){
 //     return view('welcome');
 // });
+Route::get('',function(){
+    return redirect('/users');
+});
+
+Route::get('/users/login',function(){
+    return view('users.login');
+});
+
+Route::post('/users/log','UserController@log');
 
 Route::resource('/students','StudentController');
+Route::resource('/users','UserController');

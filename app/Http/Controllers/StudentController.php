@@ -42,8 +42,6 @@ class StudentController extends Controller
         $student->email=request('email');
         $student->save();
         return redirect('/students');
-        
-
     }
 
     /**
