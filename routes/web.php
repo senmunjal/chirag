@@ -38,3 +38,4 @@ Route::post('/users/log','UserController@log');
 
 Route::resource('/students','StudentController');
 Route::resource('/users','UserController');
+Route::resource('/products','ProductController');

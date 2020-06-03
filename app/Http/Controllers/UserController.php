@@ -55,6 +55,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
+
     {
     }
 
@@ -109,6 +110,7 @@ class UserController extends Controller
         $email = request('email');
         $password = request('password');
         $user = User::where('email', $email)->get();
+        
         if ($user->isEmpty()) {
             print_r('User Not Found');
         } else {
@@ -119,7 +121,7 @@ class UserController extends Controller
                 $flag = $user[0]->flag;
                 $role = $user[0]->role;
                 $data = User::where('flag', 0)->get();
-
+                
                 if ($role == 'admin' &&  $flag == 1) {
                     $action = null;
                     return view('users.index', compact('data', 'action'));

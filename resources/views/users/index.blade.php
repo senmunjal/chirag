@@ -19,15 +19,7 @@
             <td>{{ $user->email }}</td>
             <td>
                 @if($action)
-                <form action="javaScript:void(0)" method="POST">
-    
-                    <a href="JavaScript:void(0)"><button {{$action}} class="btn btn-warning">Edit</button></a>
-   
-                    @csrf
-                    @method('DELETE')
-      
-                    <button {{$action}} type="submit" class="btn btn-danger">Delete</button>
-                </form>
+                
                 @else
                 <form action="{{ route('users.destroy',$user->id) }}" method="POST">
     
