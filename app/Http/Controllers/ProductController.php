@@ -56,14 +56,14 @@ class ProductController extends Controller
         $data=$request->all();
         
        foreach($request->title as $items=>$v){  
-            $imageName = time().'.'.$request->photo[$items]->extension();  
+            $imageName = $request->photo[$items]->extension();  
             $request->photo[$items]->move(public_path('test'), $imageName);      
             $data2=array(
                 'title'=> $request->title[$items],
                 'description'=> $request->description[$items],
                 'price'=> $request->price[$items],
                 'total_quantity'=> $request->total_quantity[$items],
-                'photo'=> public_path('test\\').$imageName,
+                'photo'=> $imageName,
              );
              Product::insert($data2);
         }
