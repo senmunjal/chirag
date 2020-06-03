@@ -13,6 +13,7 @@
 
 <body>
     <div class="container">
+    
         <div class="row mt-5">
             <form class="col-lg-12" action="/products" method="get">
                 <label class="col-lg-2 ">Number of Form</label>
@@ -40,8 +41,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <form action="{{ route('products.store') }}" method="post">
-                    @for($i = 0; $i < 5 ; $i++)
+                    <form enctype="multipart/form-data" action="{{ route('products.store') }}" method="post"  >
+                    @for($i = 0; $i < 2 ; $i++)
                    
                         @csrf
                         <tr>
@@ -67,7 +68,7 @@
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <input type="file" name="photo[{{$i}}]">
+                                    <input type="file" name="photo[{{$i}}]" >
                                 </div>
                             </td>
                         </tr>

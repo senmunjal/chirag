@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        //
+        
         if (request('f_count')) {
             $formcount = request('f_count');
             if($formcount>50){
@@ -28,6 +28,7 @@ class ProductController extends Controller
             return view('products.index',['form_count'=>$formcount]);
             
         }
+       
 
         
     }
@@ -53,15 +54,22 @@ class ProductController extends Controller
         //
         
         $data=$request->all();
-        foreach($request->title as $items=>$v){
+        
+       foreach($request->title as $items=>$v){  
+            $imageName = time().'.'.$request->photo[$items]->extension();  
+            $request->photo[$items]->move(public_path('test'), $imageName);      
             $data2=array(
                 'title'=> $request->title[$items],
                 'description'=> $request->description[$items],
                 'price'=> $request->price[$items],
-                'total_quantity'=> $request->total_quantity[$items]
+                'total_quantity'=> $request->total_quantity[$items],
+                'photo'=> public_path('test\\').$imageName,
              );
              Product::insert($data2);
         }
+        $student = Product::all();        
+        return view('products.view',compact('student'));
+        
         
         
     }
